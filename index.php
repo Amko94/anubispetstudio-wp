@@ -34,17 +34,17 @@ $hero = anubis_hero_content();
 	<div>
 		<h2>Kontakt</h2>
 		<address class="contact-details">
-			<p><a class="contact-link" href="tel:+4915773622141">
+			<p><a class="contact-link" href="<?php echo esc_url( anubis_contact_phone_url() ); ?>">
 				<span class="contact-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 3.1 5.2 2 2 0 0 1 5.1 3h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L9 10.9a16 16 0 0 0 6.1 6.1l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2"/></svg></span>
-				<span>0157-73622141</span>
+				<span><?php echo esc_html( anubis_contact( 'phone' ) ); ?></span>
 			</a></p>
-			<p><a class="contact-link" href="mailto:info@anubispetstudio.de">
+			<p><a class="contact-link" href="<?php echo esc_url( 'mailto:' . anubis_contact( 'email' ) ); ?>">
 				<span class="contact-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m3 7 9 6 9-6"/></svg></span>
-				<span>info@anubispetstudio.de</span>
+				<span><?php echo esc_html( anubis_contact( 'email' ) ); ?></span>
 			</a></p>
-			<p><a class="contact-link contact-location" href="https://www.google.com/maps/search/?api=1&amp;query=Schumannstra%C3%9Fe%208%2C%2090429%20N%C3%BCrnberg%2C%20Deutschland" target="_blank" rel="noopener noreferrer">
+			<p><a class="contact-link contact-location" href="<?php echo esc_url( anubis_contact_maps_url() ); ?>" target="_blank" rel="noopener noreferrer">
 				<span class="contact-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
-				<span>Schumannstraße 8<br>90429 Nürnberg, Deutschland</span>
+				<span><?php echo esc_html( anubis_contact( 'street' ) ); ?><br><?php echo esc_html( anubis_contact( 'city' ) ); ?></span>
 			</a></p>
 		</address>
 		<p style="margin-top:14px"><?php echo esc_html( anubis_booking_hours_label() ); ?> · Samstag nur nach telefonischer Vereinbarung</p>

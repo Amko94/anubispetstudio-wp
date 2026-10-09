@@ -194,3 +194,24 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		next.scrollIntoView( { block: 'start' } );
 	}
 } );
+// The iframe load event can fire before the booking app has rendered.
+document.querySelectorAll( '.booking-calendar-frame' ).forEach( function ( container ) {
+	var frame = container.querySelector( 'iframe' );
+	if ( ! frame ) { return; }
+	var timer = window.setInterval( function () {
+		try {
+			var doc = frame.contentDocument;
+			if ( ! doc ) { return; }
+			var app = doc.querySelector( '#ssa-booking-app, #app' );
+			var rendered = app && Array.from( app.querySelectorAll( 'h1, h2, p, button, label, .loading' ) ).some( function ( element ) {
+				return element.textContent.trim() && element.getClientRects().length && doc.defaultView.getComputedStyle( element ).visibility !== 'hidden';
+			} );
+			if ( ! rendered ) { return; }
+			container.querySelector( '.booking-calendar-loading' ).hidden = true;
+			container.setAttribute( 'aria-busy', 'false' );
+			window.clearInterval( timer );
+		} catch ( error ) {
+			// Keep the loading message if the frame is temporarily inaccessible.
+		}
+	}, 150 );
+} );

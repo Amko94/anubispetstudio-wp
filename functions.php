@@ -89,6 +89,7 @@ function anubis_theme_fallback_menu() {
 	echo '<ul id="m">';
 	echo anubis_home_menu_item();
 	echo '<li><a href="' . esc_url( anubis_prices_url() ) . '">Leistungen &amp; Preise</a></li>';
+	echo '<li><a href="' . esc_url( anubis_gallery_url() ) . '">Galerie</a></li>';
 	echo '<li><a href="' . esc_url( home_url( '/#kontakt' ) ) . '">Kontakt</a></li>';
 	echo '<li><a class="btn pri" href="' . esc_url( anubis_booking_url() ) . '">Termin buchen</a></li>';
 	echo '</ul>';
@@ -434,9 +435,11 @@ function anubis_render_social_links() {
 	}
 }
 
+require_once get_template_directory() . '/inc/contact.php';
 require_once get_template_directory() . '/inc/booking.php';
 require_once get_template_directory() . '/inc/booking-retention.php';
 require_once get_template_directory() . '/inc/booking-email.php';
 require_once get_template_directory() . '/inc/impressum.php';
 require_once get_template_directory() . '/inc/privacy.php';
 require_once get_template_directory() . '/inc/telegram.php';
+require_once get_template_directory() . '/inc/gallery.php';

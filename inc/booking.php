@@ -176,9 +176,11 @@ function anubis_booking_selection() {
 			$_GET['Hundegröße'] = $sizes[ $choice['size'] ];
 			echo '<h3>Wähle deinen Termin</h3>';
 			echo '<p class="booking-help">' . esc_html( anubis_booking_hours_label() ) . '. Samstag nur nach telefonischer Vereinbarung.</p>';
+			echo '<div class="booking-calendar-frame" aria-busy="true"><div class="booking-calendar-loading" role="status"><span class="booking-calendar-spinner" aria-hidden="true"></span>Kalender wird geladen …</div>';
 			echo do_shortcode( '[ssa_booking type="' . $type_id . '" accent_color="6e5239" background="fdfdfd" padding="0" date_view="month" time_view="rows" ssa_locale="de_DE"]' );
+			echo '</div>';
 		} else {
-			echo '<p>Für diese Auswahl vereinbaren wir den Termin persönlich. Ruf uns unter <a href="tel:+4915773622141">0157-73622141</a> an oder schreib an <a href="mailto:info@anubispetstudio.de">info@anubispetstudio.de</a>.</p>';
+			echo '<p>Für diese Auswahl vereinbaren wir den Termin persönlich. Ruf uns unter <a href="' . esc_url( anubis_contact_phone_url() ) . '">' . esc_html( anubis_contact( 'phone' ) ) . '</a> an oder schreib an <a href="' . esc_url( 'mailto:' . anubis_contact( 'email' ) ) . '">' . esc_html( anubis_contact( 'email' ) ) . '</a>.</p>';
 		}
 		echo '</div>';
 	}
