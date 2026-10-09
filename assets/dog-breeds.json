@@ -1,0 +1,1312 @@
+[
+  {
+    "name": "Affenpinscher",
+    "size": "small",
+    "haircut": true
+  },
+  {
+    "name": "Afghanischer Windhund",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Airedale Terrier (geeigneter Scherenschnitt)",
+    "size": "large",
+    "haircut": true
+  },
+  {
+    "name": "Akita Inu",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Alaskan Malamute",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "American Cocker Spaniel",
+    "size": "medium",
+    "haircut": true
+  },
+  {
+    "name": "American Staffordshire Terrier",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "American Water Spaniel",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Anatolischer Hirtenhund / Kangal",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Appenzeller Sennenhund",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Aussiedoodle",
+    "size": null,
+    "haircut": true
+  },
+  {
+    "name": "Aussiedoodle (groß)",
+    "size": "large",
+    "haircut": true
+  },
+  {
+    "name": "Aussiedoodle (mittel)",
+    "size": "medium",
+    "haircut": true
+  },
+  {
+    "name": "Australian Cattle Dog",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Australian Kelpie",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Australian Labradoodle (mittel)",
+    "size": "medium",
+    "haircut": true
+  },
+  {
+    "name": "Australian Shepherd",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Australian Silky Terrier",
+    "size": "small",
+    "haircut": true
+  },
+  {
+    "name": "Australian Terrier",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Azawakh",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Barbet",
+    "size": "large",
+    "haircut": true
+  },
+  {
+    "name": "Basenji",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Basset Fauve de Bretagne",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Basset Griffon Vendéen",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Basset Hound",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Bayerischer Gebirgsschweißhund",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Beagle",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Bearded Collie (vollständiger Schnitt)",
+    "size": "large",
+    "haircut": true
+  },
+  {
+    "name": "Beauceron",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Bedlington Terrier",
+    "size": "medium",
+    "haircut": true
+  },
+  {
+    "name": "Belgischer Schäferhund (alle Varietäten)",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Bergamasker Hirtenhund",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Berger de Picardie",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Berger des Pyrénées",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Bernedoodle",
+    "size": "large",
+    "haircut": true
+  },
+  {
+    "name": "Berner Sennenhund",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Bichon Frisé",
+    "size": "small",
+    "haircut": true
+  },
+  {
+    "name": "Biewer Terrier",
+    "size": "small",
+    "haircut": true
+  },
+  {
+    "name": "Black and Tan Coonhound",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Bloodhound",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Bobtail",
+    "size": "large",
+    "haircut": true
+  },
+  {
+    "name": "Bologneser",
+    "size": "small",
+    "haircut": true
+  },
+  {
+    "name": "Bolonka Zwetna",
+    "size": "small",
+    "haircut": true
+  },
+  {
+    "name": "Border Collie",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Border Terrier",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Bordoodle",
+    "size": null,
+    "haircut": true
+  },
+  {
+    "name": "Borzoi",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Boston Terrier",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Bouvier des Flandres",
+    "size": "large",
+    "haircut": true
+  },
+  {
+    "name": "Boxer",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Boxerdoodle",
+    "size": null,
+    "haircut": true
+  },
+  {
+    "name": "Bracco Italiano",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Briard (vollständiger Schnitt)",
+    "size": "large",
+    "haircut": true
+  },
+  {
+    "name": "Brittany / Epagneul Breton",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Broholmer",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Bull Terrier",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Bullmastiff",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Cairn Terrier",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Cão da Serra da Estrela",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Cão de Castro Laboreiro",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Cavachon",
+    "size": null,
+    "haircut": true
+  },
+  {
+    "name": "Cavalier King Charles Spaniel",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Cavapoo",
+    "size": null,
+    "haircut": true
+  },
+  {
+    "name": "Cavapoo (klein)",
+    "size": "small",
+    "haircut": true
+  },
+  {
+    "name": "Cavapoo (mittel)",
+    "size": "medium",
+    "haircut": true
+  },
+  {
+    "name": "Cesky Terrier",
+    "size": "small",
+    "haircut": true
+  },
+  {
+    "name": "Chesapeake Bay Retriever",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Chi-Poo",
+    "size": null,
+    "haircut": true
+  },
+  {
+    "name": "Chihuahua (Kurzhaar)",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Chihuahua (Langhaar)",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Chinese Crested Powder Puff",
+    "size": "small",
+    "haircut": true
+  },
+  {
+    "name": "Chow-Chow",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Cockapoo",
+    "size": null,
+    "haircut": true
+  },
+  {
+    "name": "Cockapoo (klein)",
+    "size": "small",
+    "haircut": true
+  },
+  {
+    "name": "Cockapoo (mittel)",
+    "size": "medium",
+    "haircut": true
+  },
+  {
+    "name": "Collie (Kurzhaar)",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Collie (Langhaar)",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Coton de Tuléar",
+    "size": "small",
+    "haircut": true
+  },
+  {
+    "name": "Dackel (Kurzhaar)",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Dackel (Langhaar)",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Dackel (Rauhaar)",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Dalmatiner",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Dandie Dinmont Terrier",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Deerhound",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Deutsch Drahthaar",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Deutsch Kurzhaar",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Deutsch Langhaar",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Deutsch Stichelhaar",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Deutsche Dogge",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Deutscher Pinscher",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Deutscher Schäferhund (Langstockhaar)",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Deutscher Schäferhund (Stockhaar)",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Deutscher Spitz (Kleinspitz)",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Deutscher Spitz (Mittelspitz)",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Deutscher Wachtelhund",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Dobermann",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Dogo Argentino",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Doxiepoo",
+    "size": null,
+    "haircut": true
+  },
+  {
+    "name": "Englischer Toy Terrier",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "English Cocker Spaniel",
+    "size": "medium",
+    "haircut": true
+  },
+  {
+    "name": "English Foxhound",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "English Greyhound",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "English Pointer",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "English Setter",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "English Springer Spaniel (normaler Schnitt)",
+    "size": "medium",
+    "haircut": true
+  },
+  {
+    "name": "Entlebucher Sennenhund",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Eurasier",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Field Spaniel",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Finnischer Lapphund",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Finnischer Laufhund",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Finnischer Spitz",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Flat Coated Retriever",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Foxterrier (Drahthaar)",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Foxterrier (Glatthaar)",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Französische Bulldogge",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Golden Retriever",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Goldendoodle",
+    "size": null,
+    "haircut": true
+  },
+  {
+    "name": "Goldendoodle (groß)",
+    "size": "large",
+    "haircut": true
+  },
+  {
+    "name": "Goldendoodle (mittel)",
+    "size": "medium",
+    "haircut": true
+  },
+  {
+    "name": "Gordon Setter",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Gos d’Atura Català",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Grand Bleu de Gascogne",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Griffon Belge",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Griffon Bruxellois",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Großer Schweizer Sennenhund",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Großpudel / Königspudel",
+    "size": "large",
+    "haircut": true
+  },
+  {
+    "name": "Hamiltonstövare",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Hannoverscher Schweißhund",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Harrier",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Havaneser",
+    "size": "small",
+    "haircut": true
+  },
+  {
+    "name": "Havapoo",
+    "size": null,
+    "haircut": true
+  },
+  {
+    "name": "Holländischer Schäferhund",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Hovawart",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Ibizan Hound / Podenco Ibicenco",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Irish Red and White Setter",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Irish Red Setter",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Irish Terrier",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Irish Water Spaniel",
+    "size": "large",
+    "haircut": true
+  },
+  {
+    "name": "Irish Wolfhound",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Islandhund",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Jack Russell Terrier",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Jackapoo",
+    "size": null,
+    "haircut": true
+  },
+  {
+    "name": "Japan Chin",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Japanese Terrier",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Kerry Blue Terrier",
+    "size": "medium",
+    "haircut": true
+  },
+  {
+    "name": "King Charles Spaniel",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Kleinpudel (größer gewachsen)",
+    "size": "medium",
+    "haircut": true
+  },
+  {
+    "name": "Kleinpudel (klein gewachsen)",
+    "size": "small",
+    "haircut": true
+  },
+  {
+    "name": "Komondor",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Kontinentaler Zwergspaniel (Papillon)",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Kontinentaler Zwergspaniel (Phalène)",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Kooikerhondje",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Kroatischer Schäferhund",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Kromfohrländer",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Kuvasz",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Labradoodle",
+    "size": null,
+    "haircut": true
+  },
+  {
+    "name": "Labradoodle (groß)",
+    "size": "large",
+    "haircut": true
+  },
+  {
+    "name": "Labradoodle (mittel)",
+    "size": "medium",
+    "haircut": true
+  },
+  {
+    "name": "Labrador Retriever",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Lagotto Romagnolo",
+    "size": "medium",
+    "haircut": true
+  },
+  {
+    "name": "Lakeland Terrier",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Lancashire Heeler",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Landseer",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Leonberger",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Lhasa Apso",
+    "size": "small",
+    "haircut": true
+  },
+  {
+    "name": "Löwchen",
+    "size": "small",
+    "haircut": true
+  },
+  {
+    "name": "Magyar Vizsla (Drahthaar)",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Magyar Vizsla (Kurzhaar)",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Malteser",
+    "size": "small",
+    "haircut": true
+  },
+  {
+    "name": "Maltipoo",
+    "size": "small",
+    "haircut": true
+  },
+  {
+    "name": "Manchester Terrier",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Maremmen-Abruzzen-Schäferhund",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Mastiff",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Miniature American Shepherd",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Mittelpudel",
+    "size": "medium",
+    "haircut": true
+  },
+  {
+    "name": "Mittelschnauzer (geeigneter Scherenschnitt)",
+    "size": "medium",
+    "haircut": true
+  },
+  {
+    "name": "Mops",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Mudi",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Neufundländer",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Newfypoo",
+    "size": null,
+    "haircut": true
+  },
+  {
+    "name": "Norfolk Terrier",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Norrbottenspitz",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Norwich Terrier",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Otterhound",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Parson Russell Terrier",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Peekapoo",
+    "size": null,
+    "haircut": true
+  },
+  {
+    "name": "Pekingese",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Petit Brabançon",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Podenco Canario",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Polski Owczarek Nizinny (PON)",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Polski Owczarek Podhalanski",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Pomapoo",
+    "size": "small",
+    "haircut": true
+  },
+  {
+    "name": "Poochon",
+    "size": null,
+    "haircut": true
+  },
+  {
+    "name": "Porcelaine",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Portugiesischer Wasserhund",
+    "size": "large",
+    "haircut": true
+  },
+  {
+    "name": "Prager Rattler",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Puggle",
+    "size": null,
+    "haircut": true
+  },
+  {
+    "name": "Puli",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Pumi",
+    "size": "medium",
+    "haircut": true
+  },
+  {
+    "name": "Pyrenäen-Mastiff",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Pyrenäenberghund",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Rhodesian Ridgeback",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Riesenschnauzer (geeigneter Scherenschnitt)",
+    "size": "large",
+    "haircut": true
+  },
+  {
+    "name": "Rottweiler",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Russkiy Toy",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Saarlooswolfhund",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Saluki",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Samojede",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Schapendoes",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Schipperke",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Schnoodle",
+    "size": null,
+    "haircut": true
+  },
+  {
+    "name": "Schnoodle (klein)",
+    "size": "small",
+    "haircut": true
+  },
+  {
+    "name": "Schnoodle (mittel)",
+    "size": "medium",
+    "haircut": true
+  },
+  {
+    "name": "Schweizer Laufhund",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Scottish Terrier",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Sealyham Terrier",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Segugio Italiano",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Shar-Pei",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Sheepadoodle",
+    "size": "large",
+    "haircut": true
+  },
+  {
+    "name": "Shetland Sheepdog / Sheltie",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Shiba Inu",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Shih Tzu",
+    "size": "small",
+    "haircut": true
+  },
+  {
+    "name": "Shih-Poo",
+    "size": "small",
+    "haircut": true
+  },
+  {
+    "name": "Shikoku",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Siberian Husky",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Skye Terrier",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Sloughi",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Soft Coated Wheaten Terrier",
+    "size": "medium",
+    "haircut": true
+  },
+  {
+    "name": "Spanischer Windhund / Galgo Español",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Spinone Italiano",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Springerdoodle",
+    "size": null,
+    "haircut": true
+  },
+  {
+    "name": "St. Bernhardshund (Kurzhaar)",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "St. Bernhardshund (Langhaar)",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Staffordshire Bull Terrier",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Südrussischer Owtscharka",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Sussex Spaniel",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Tibet Spaniel",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Tibet Terrier",
+    "size": "medium",
+    "haircut": true
+  },
+  {
+    "name": "Tornjak",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Toypudel",
+    "size": "small",
+    "haircut": true
+  },
+  {
+    "name": "Tschechoslowakischer Wolfhund",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Volpino Italiano",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Weimaraner (Kurzhaar)",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Weimaraner (Langhaar)",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Weißer Schweizer Schäferhund",
+    "size": "large",
+    "haircut": false
+  },
+  {
+    "name": "Welsh Corgi Cardigan",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Welsh Corgi Pembroke",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Welsh Springer Spaniel (normaler Schnitt)",
+    "size": "medium",
+    "haircut": true
+  },
+  {
+    "name": "Welsh Terrier",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "West Highland White Terrier (geeigneter Scherenschnitt)",
+    "size": "small",
+    "haircut": true
+  },
+  {
+    "name": "Whippet",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Whoodle",
+    "size": null,
+    "haircut": true
+  },
+  {
+    "name": "Whoodle (groß)",
+    "size": "large",
+    "haircut": true
+  },
+  {
+    "name": "Whoodle (mittel)",
+    "size": "medium",
+    "haircut": true
+  },
+  {
+    "name": "Wolfsspitz / Keeshond",
+    "size": "medium",
+    "haircut": false
+  },
+  {
+    "name": "Yorkipoo",
+    "size": "small",
+    "haircut": true
+  },
+  {
+    "name": "Yorkshire Terrier",
+    "size": "small",
+    "haircut": true
+  },
+  {
+    "name": "Zentralasiatischer Owtscharka",
+    "size": null,
+    "haircut": false
+  },
+  {
+    "name": "Zwergpinscher",
+    "size": "small",
+    "haircut": false
+  },
+  {
+    "name": "Zwergpudel",
+    "size": "small",
+    "haircut": true
+  },
+  {
+    "name": "Zwergschnauzer (geeigneter Scherenschnitt)",
+    "size": "small",
+    "haircut": true
+  },
+  {
+    "name": "Zwergspitz / Pomeranian",
+    "size": "small",
+    "haircut": false
+  }
+]
