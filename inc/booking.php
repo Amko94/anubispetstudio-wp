@@ -2,6 +2,22 @@
 /** Rasse → Größe → Leistung → SSA-Terminauswahl. */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
+// Start fetching the iframe's app assets before its WordPress document arrives.
+add_action( 'wp_head', function () {
+	if ( ! is_page( (int) get_option( 'anubis_booking_page_id' ) ) || ! function_exists( 'ssa' ) ) { return; }
+	$plugin = ssa();
+	$assets = array(
+		'booking-app-new/dist/static/js/manifest.js' => 'script',
+		'booking-app-new/dist/static/js/chunk-vendors.js' => 'script',
+		'booking-app-new/dist/static/js/app.js' => 'script',
+		'booking-app-new/dist/static/css/app.css' => 'style',
+	);
+	foreach ( $assets as $path => $type ) {
+		$url = $plugin->url( $path . '?ver=' . $plugin::VERSION );
+		echo '<link rel="preload" href="' . esc_url( $url ) . '" as="' . esc_attr( $type ) . '">' . "\n";
+	}
+}, 2 );
+
 function anubis_dog_breeds() {
 	static $breeds;
 	if ( null === $breeds ) {
