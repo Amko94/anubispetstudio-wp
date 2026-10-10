@@ -1,6 +1,12 @@
 ( function () {
 	'use strict';
 	function updatePlaceholders() {
+		// Keep a single booking summary once the customer form is shown.
+		try {
+			var frame = window.frameElement;
+			var step = frame && frame.closest( '.dog-booking-next' );
+			if ( step ) { step.classList.toggle( 'is-customer-step', !! document.querySelector( '.customer-information-container' ) ); }
+		} catch ( error ) { /* Parent access is unavailable outside the local booking embed. */ }
 		document.querySelectorAll( '.customer-information-container' ).forEach( function ( form ) {
 			if ( ! form.previousElementSibling || ! form.previousElementSibling.classList.contains( 'anubis-form-intro' ) ) {
 				var intro = document.createElement( 'div' );

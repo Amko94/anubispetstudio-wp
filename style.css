@@ -231,3 +231,7 @@ footer a{text-decoration:underline}
 .booking-service small{font-size:.8rem;color:var(--t);line-height:1.5}
 .booking-service.is-disabled{opacity:.5;cursor:default;box-shadow:none}
 @media(max-width:600px){.booking-services{grid-template-columns:1fr}.dog-size-result{padding:8px 14px;gap:12px}.dog-size-result img{width:105px;height:105px}.dog-size-result span{font-size:1.15rem}}
+
+/* The customer step already contains its own treatment and date summary. */
+.dog-booking-next.is-customer-step > .booking-selection-summary,
+.dog-booking-next.is-customer-step > .booking-calendar-intro { display: none; }

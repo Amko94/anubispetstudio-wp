@@ -151,3 +151,4 @@ body, .md-theme-default { font-family: "Segoe UI", sans-serif; }
 :is(#ssa-booking-app, #app) .customer-information-container [data-anubis-field="notes"] .mdc-floating-label { white-space: normal; line-height: 16px; }
 @media (max-width:600px) { :is(#ssa-booking-app, #app) .customer-information-container textarea[name="notes"] { padding-top: 48px; min-height: 132px; } }
 :is(#ssa-booking-app, #app) .customer-information-container .foxy-phone-container .vue-tel-input-container { width: 100%; min-width: 0; box-sizing: border-box; }
+:is(#ssa-booking-app, #app):has(.customer-information-container) h1 { font-size: 20px; line-height: 1.4; margin-bottom: 6px; }

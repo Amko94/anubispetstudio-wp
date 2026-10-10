@@ -204,7 +204,7 @@ function anubis_booking_selection() {
 			<div class="booking-services"><?php foreach ( $services as $key => $label ) : ?>
 				<div class="booking-service-choice">
 				<label class="booking-service"><input type="checkbox" name="dog_services[]" value="<?php echo esc_attr( $key ); ?>"<?php echo 'haircut' === $key ? ' aria-describedby="dog-care-note"' : ''; ?> <?php checked( in_array( $key, $choice['service'], true ) ); ?>><span><strong><?php echo esc_html( $label ); ?></strong><small class="service-detail"></small></span></label>
-				<?php if ( 'haircut' === $key ) : ?><p class="booking-help">Inklusive Bürsten und Auskämmen sowie Krallen schneiden.</p><p id="dog-care-note" class="dog-care-note booking-help" aria-live="polite"<?php echo $choice['haircut_allowed'] ? ' hidden' : ''; ?>>Für diese Rasse sieht unsere Liste Teilpflege vor. Bitte wähle eine Einzelleistung.</p><?php endif; ?>
+				<?php if ( 'haircut' === $key ) : ?><p id="dog-care-note" class="dog-care-note booking-help" aria-live="polite"<?php echo $choice['haircut_allowed'] ? ' hidden' : ''; ?>>Für diese Rasse sieht unsere Liste Teilpflege vor. Bitte wähle eine Einzelleistung.</p><?php endif; ?>
 				</div>
 			<?php endforeach; ?></div>
 			<p class="dog-price-preview" aria-live="polite"><?php echo $choice['valid'] ? 'Gesamtpreis: ' . esc_html( $choice['price'] ) : ''; ?></p>
@@ -215,15 +215,15 @@ function anubis_booking_selection() {
 	</form>
 	<?php
 	if ( $choice['valid'] ) {
-		echo '<div class="dog-booking-next" id="termine" tabindex="-1"><h2>Deine Auswahl</h2><p>' . esc_html( $choice['name'] . ' · ' . $sizes[ $choice['size'] ] . ' · ' . implode( ' + ', array_intersect_key( $services, array_flip( $choice['service'] ) ) ) ) . '</p><button class="btn dog-booking-edit" type="button" hidden>← Auswahl ändern</button>';
+		echo '<div class="dog-booking-next" id="termine" tabindex="-1"><div class="booking-selection-summary"><h2>Deine Auswahl</h2><p>' . esc_html( $choice['name'] . ' · ' . $sizes[ $choice['size'] ] . ' · ' . implode( ' + ', array_intersect_key( $services, array_flip( $choice['service'] ) ) ) ) . '</p></div><button class="btn dog-booking-edit" type="button" hidden>← Auswahl ändern</button>';
 		$type_id = anubis_combination_type( $choice );
 		$types = anubis_public_booking_types();
 		if ( $type_id && isset( $types[ $type_id ] ) && shortcode_exists( 'ssa_booking' ) ) {
 			// SSA übernimmt Query-Parameter in gleichnamige Kundenfelder.
 			$_GET['Hunderasse'] = $choice['name'];
 			$_GET['Hundegröße'] = $sizes[ $choice['size'] ];
-			echo '<h3>Wähle deinen Termin</h3>';
-			echo '<p class="booking-help">' . esc_html( anubis_booking_hours_label() ) . '. Samstag nur nach telefonischer Vereinbarung.</p>';
+			echo '<h3 class="booking-calendar-intro">Wähle deinen Termin</h3>';
+			echo '<p class="booking-help booking-calendar-intro">' . esc_html( anubis_booking_hours_label() ) . '. Samstag nur nach telefonischer Vereinbarung.</p>';
 			echo '<div class="booking-calendar-frame" aria-busy="true"><div class="booking-calendar-loading" role="status"><span class="booking-calendar-spinner" aria-hidden="true"></span>Kalender wird geladen …</div>';
 			echo do_shortcode( '[ssa_booking type="' . $type_id . '" accent_color="6e5239" background="fdfdfd" padding="0" date_view="month" time_view="rows" ssa_locale="de_DE"]' );
 			echo '</div>';
@@ -405,7 +405,7 @@ function anubis_booking_type_details( $definition ) {
 		'title' => $definition['title'],
 		'duration' => anubis_booking_duration( $definition['duration'] ),
 		'availability' => anubis_booking_availability(),
-		'description' => 'Gesamtpreis: ' . anubis_price( $definition['price'] ) . '. ' . ( in_array( $definition['price'], array( 'small', 'medium', 'large' ), true ) ? 'Inklusive Bürsten und Auskämmen sowie Krallen schneiden. ' : '' ) . 'Ohne Baden und Föhnen. Zuschläge nach Fellzustand werden vor der Behandlung besprochen.',
+		'description' => 'Gesamtpreis: ' . anubis_price( $definition['price'] ) . '. Ohne Baden und Föhnen. Zuschläge nach Fellzustand werden vor der Behandlung besprochen.',
 	);
 }
 
