@@ -92,7 +92,9 @@ function anubis_theme_fallback_menu() {
 	echo '<li><a href="' . esc_url( anubis_prices_url() ) . '">Leistungen &amp; Preise</a></li>';
 	echo '<li><a href="' . esc_url( anubis_gallery_url() ) . '">Galerie</a></li>';
 	echo '<li><a href="' . esc_url( home_url( '/#kontakt' ) ) . '">Kontakt</a></li>';
-	echo '<li><a class="btn pri" href="' . esc_url( anubis_booking_url() ) . '">Termin buchen</a></li>';
+	if ( ! anubis_is_booking_page() ) {
+		echo '<li><a class="btn pri" href="' . esc_url( anubis_booking_url() ) . '">Termin buchen</a></li>';
+	}
 	echo '</ul>';
 }
 
@@ -393,6 +395,16 @@ function anubis_booking_url() {
 	return $id && 'publish' === get_post_status( $id ) ? get_permalink( $id ) : home_url( '/termin-buchen/' );
 }
 
+function anubis_is_booking_page() {
+	$id = (int) get_option( 'anubis_booking_page_id' );
+	return ( $id > 0 && is_page( $id ) ) || is_page( 'termin-buchen' );
+}
+
+add_filter( 'body_class', function ( $classes ) {
+	if ( anubis_is_booking_page() ) { $classes[] = 'anubis-booking-page'; }
+	return $classes;
+} );
+
 function anubis_booking_shortcode() {
 	return anubis_booking_selection();
 }
@@ -405,8 +417,12 @@ add_shortcode( 'anubis_prices_link', 'anubis_prices_link_shortcode' );
 
 function anubis_booking_menu_link( $items, $args ) {
 	if ( 'primary' !== $args->theme_location ) { return $items; }
-	foreach ( $items as $item ) {
-		if ( 'termin buchen' === strtolower( trim( wp_strip_all_tags( $item->title ) ) ) ) {
+	foreach ( $items as $key => $item ) {
+		if ( 'termin buchen' === strtolower( trim( wp_strip_all_tags( $item->title ) ) ) || untrailingslashit( $item->url ) === untrailingslashit( anubis_booking_url() ) ) {
+			if ( anubis_is_booking_page() ) {
+				unset( $items[ $key ] );
+				continue;
+			}
 			$item->url = anubis_booking_url();
 		}
 	}

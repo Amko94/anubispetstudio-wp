@@ -193,6 +193,7 @@ footer a{text-decoration:underline}
 .booking-fixed-action .btn:focus-visible{outline:3px solid var(--d);outline-offset:4px}
 @media(max-width:600px){
  body{padding-bottom:calc(92px + env(safe-area-inset-bottom,0px))}
+ body.anubis-booking-page{padding-bottom:0}
  html{scroll-padding-bottom:calc(100px + env(safe-area-inset-bottom,0px))}
  .booking-fixed-action{display:flex}
  .booking-fixed-action .btn{width:100%;max-width:400px}
