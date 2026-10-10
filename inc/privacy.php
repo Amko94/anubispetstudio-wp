@@ -20,14 +20,14 @@ function anubis_create_privacy_page() {
 }
 add_action( 'init', 'anubis_create_privacy_page' );
 
-/** Vom Betreiber angeforderte Kurzfassung einmalig übernehmen. */
+/** Vom Betreiber vervollständigte Fassung einmalig übernehmen. */
 function anubis_privacy_apply_short_copy() {
-	if ( get_option( 'anubis_privacy_short_copy_applied' ) ) { return; }
+	if ( get_option( 'anubis_privacy_final_copy_applied' ) ) { return; }
 	$page = get_post( (int) get_option( 'anubis_privacy_page_id' ) );
 	$file = get_template_directory() . '/content/datenschutz.html';
 	if ( ! $page || 'page' !== $page->post_type || ! is_readable( $file ) ) { return; }
 	$result = wp_update_post( wp_slash( array( 'ID' => $page->ID, 'post_content' => file_get_contents( $file ) ) ), true );
-	if ( ! is_wp_error( $result ) && $result ) { update_option( 'anubis_privacy_short_copy_applied', 1 ); }
+	if ( ! is_wp_error( $result ) && $result ) { update_option( 'anubis_privacy_final_copy_applied', 1 ); }
 }
 add_action( 'init', 'anubis_privacy_apply_short_copy', 30 );
 

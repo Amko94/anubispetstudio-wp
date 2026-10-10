@@ -15,7 +15,6 @@
 			input.setAttribute('aria-label', 'Name des Vierbeiners');
 			var label = document.createElement('label');
 			label.className = 'anubis-dog-name-label';
-			label.textContent = 'Name des Vierbeiners';
 			label.style.cssText = 'display:block;margin:0 0 8px';
 			if (!input.id) { input.id = 'anubis-dog-name'; }
 			label.htmlFor = input.id;
@@ -35,6 +34,9 @@
 			var legend = document.createElement('legend');
 			legend.textContent = 'Geschlecht des Hundes';
 			fieldset.appendChild(legend);
+			var options = document.createElement('div');
+			options.className = 'anubis-dog-sex-options';
+			fieldset.appendChild(options);
 			['Männlich', 'Weiblich'].forEach(function (value, index) {
 				var label = document.createElement('label');
 				label.style.cssText = 'display:inline-flex;align-items:center;gap:8px;margin:8px 24px 0 0;cursor:pointer';
@@ -50,7 +52,7 @@
 				});
 				label.appendChild(radio);
 				label.appendChild(document.createTextNode(value));
-				fieldset.appendChild(label);
+				options.appendChild(label);
 			});
 			// Retain the original input so Vue saves the value with the appointment.
 			Array.from(container.children).forEach(function (child) { child.hidden = true; });

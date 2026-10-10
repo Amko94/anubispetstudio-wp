@@ -1,5 +1,22 @@
 /* The booking app lives in its own iframe; keep its styles scoped here. */
 /* Keep the two dog gender choices alongside each other. */
+:is(#ssa-booking-app, #app) .anubis-dog-sex-options {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+}
+:is(#ssa-booking-app, #app) .anubis-dog-sex-options > label {
+  display: inline-flex !important;
+  flex: 0 0 auto;
+  width: auto !important;
+  margin: 8px 0 0 !important;
+  white-space: nowrap;
+}
+:is(#ssa-booking-app, #app) .anubis-dog-sex-options input[type="radio"] {
+  width: auto;
+  flex: 0 0 auto;
+}
 :is(#ssa-booking-app, #app) [class*="field-geschlecht-des-hundes-"] .foxy-list-options__radio-group {
   display: flex;
   flex-direction: row;
