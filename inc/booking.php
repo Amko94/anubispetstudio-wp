@@ -426,6 +426,12 @@ function anubis_booking_customer_fields( $custom = false ) {
 	return $fields;
 }
 
+/** Compatibility for dog fields in SSA's Basic booking iframe. */
+add_action( 'ssa_booking_footer', function () {
+	$path = get_template_directory() . '/assets/js/booking-dog-fields.js';
+	echo '<script src="' . esc_url( get_template_directory_uri() . '/assets/js/booking-dog-fields.js?ver=' . filemtime( $path ) ) . '"></script>';
+} );
+
 /** Keep customer booking confirmations; team notifications will use Telegram. */
 add_filter( 'ssa/email/args', function ( $args ) {
 	$headers = is_array( $args['headers'] ) ? $args['headers'] : preg_split( '/\r?\n/', $args['headers'] );

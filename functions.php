@@ -490,3 +490,4 @@ require_once get_template_directory() . '/inc/impressum.php';
 require_once get_template_directory() . '/inc/privacy.php';
 require_once get_template_directory() . '/inc/telegram.php';
 require_once get_template_directory() . '/inc/gallery.php';
+require_once get_template_directory() . '/inc/seo.php';

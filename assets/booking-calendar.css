@@ -1,4 +1,16 @@
 /* The booking app lives in its own iframe; keep its styles scoped here. */
+/* Keep the two dog gender choices alongside each other. */
+:is(#ssa-booking-app, #app) [class*="field-geschlecht-des-hundes-"] .foxy-list-options__radio-group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 24px;
+}
+:is(#ssa-booking-app, #app) [class*="field-geschlecht-des-hundes-"] .foxy-list-options__radio-group > * {
+  width: auto;
+  flex: 0 0 auto;
+}
 /* Keep the booking summary; hide only the follow-up actions on confirmation. */
 :is(#ssa-booking-app, #app) .confirm.cust-info .appointment-actions { display: none !important; }
 body, .md-theme-default { font-family: "Segoe UI", sans-serif; }
