@@ -106,3 +106,48 @@ body, .md-theme-default { font-family: "Segoe UI", sans-serif; }
 :is(#ssa-booking-app, #app) .time-selection-cols { display: flex; flex-direction: column; align-items: stretch; }
 :is(#ssa-booking-app, #app) .time-listing .time-select,
 :is(#ssa-booking-app, #app) .time-listing .time-select > div { width: 100%; margin: 0; }
+
+/* Compact customer form, including the Basic plugin's dog-field controls. */
+:is(#ssa-booking-app, #app) .anubis-form-intro { margin: 8px 0 18px; }
+:is(#ssa-booking-app, #app) .anubis-form-intro h2 { margin: 0 0 6px; font-family: Georgia, serif; font-size: 24px; color: #34271e; }
+:is(#ssa-booking-app, #app) .anubis-form-intro p { margin: 0; max-width: 52ch; font-size: 13px; line-height: 1.6; color: #756657; }
+:is(#ssa-booking-app, #app) .customer-information-container { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; padding: 20px; border: 1px solid #e9e0d5; border-radius: 18px; background: #faf7f2; }
+:is(#ssa-booking-app, #app) .customer-information-container .form-field { min-width: 0; margin: 0; }
+:is(#ssa-booking-app, #app) .customer-information-container [data-anubis-field="notes"] { grid-column: 1 / -1; }
+:is(#ssa-booking-app, #app) .customer-information-container .textfield-container { margin: 0; padding: 0; }
+:is(#ssa-booking-app, #app) .customer-information-container .mdc-text-field,
+:is(#ssa-booking-app, #app) .customer-information-container .foxy-phone-container { width: 100%; min-height: 68px; height: auto; box-sizing: border-box; border: 1px solid #d9cbbb; border-radius: 12px; background: #fff; box-shadow: none; transition: border-color .15s,box-shadow .15s; }
+:is(#ssa-booking-app, #app) .customer-information-container .mdc-text-field:focus-within,
+:is(#ssa-booking-app, #app) .customer-information-container .foxy-phone-container:focus-within { border-color: #6e5239; box-shadow: 0 0 0 3px rgba(110,82,57,.12); }
+:is(#ssa-booking-app, #app) .customer-information-container .mdc-floating-label { position: absolute; left: 14px !important; top: 10px !important; max-width: calc(100% - 28px); transform: none !important; font-size: 12px; line-height: 18px; color: #756657; }
+:is(#ssa-booking-app, #app) .customer-information-container .mdc-text-field__icon { display: none; }
+:is(#ssa-booking-app, #app) .customer-information-container .mdc-text-field__input { width: 100%; min-width: 0; margin: 0 !important; padding: 30px 14px 10px; box-sizing: border-box; font: 16px/1.5 "Segoe UI",sans-serif; color: #34271e; }
+:is(#ssa-booking-app, #app) .customer-information-container .mdc-line-ripple,
+:is(#ssa-booking-app, #app) .customer-information-container .mdc-text-field__ripple { display: none; }
+:is(#ssa-booking-app, #app) .customer-information-container textarea[name="notes"] { min-height: 112px; margin-top: 0 !important; resize: vertical; }
+:is(#ssa-booking-app, #app) .customer-information-container .foxy-phone-container .vue-tel-input { margin: 0; border: 0; background: transparent; box-shadow: none; }
+:is(#ssa-booking-app, #app) .customer-information-container .foxy-phone-container .vti__input { min-width: 0; width: 100%; padding: 30px 14px 10px; background: transparent; border: 0; font-size: 16px; color: #34271e; }
+:is(#ssa-booking-app, #app) .customer-information-container .mdc-text-field--invalid { border-color: #b00020; }
+:is(#ssa-booking-app, #app) .customer-information-container .mdc-text-field-helper-text { padding: 4px 2px 0; font-size: 12px; }
+:is(#ssa-booking-app, #app) .anubis-dog-name-label { display: none !important; }
+:is(#ssa-booking-app, #app) .anubis-dog-sex { margin: 0; padding: 10px 12px; min-height: 68px; box-sizing: border-box; border: 1px solid #d9cbbb; border-radius: 12px; background: #fff; }
+:is(#ssa-booking-app, #app) .anubis-dog-sex legend { float: left; width: 100%; margin: 0 0 5px; padding: 0; font-size: 12px; line-height: 18px; color: #756657; }
+:is(#ssa-booking-app, #app) .anubis-dog-sex-options { clear: both; gap: 8px; flex-wrap: wrap; }
+:is(#ssa-booking-app, #app) .anubis-dog-sex-options > label { flex: 1 1 auto; justify-content: center; min-height: 36px; margin: 0 !important; padding: 5px 10px; box-sizing: border-box; border: 1px solid #e9e0d5; border-radius: 8px; font-size: 14px; color: #523c29; }
+:is(#ssa-booking-app, #app) .anubis-dog-sex-options > label:has(input:checked) { border-color: #6e5239; background: #f1e8dc; }
+:is(#ssa-booking-app, #app) .anubis-dog-sex-options > label:focus-within { outline: 2px solid #6e5239; outline-offset: 2px; }
+:is(#ssa-booking-app, #app) .anubis-dog-sex-options input { accent-color: #6e5239; }
+@media (max-width: 600px) {
+  :is(#ssa-booking-app, #app) .customer-information-container { grid-template-columns: minmax(0,1fr); gap: 12px; padding: 14px; }
+  :is(#ssa-booking-app, #app) .anubis-form-intro h2 { font-size: 22px; }
+}
+:is(#ssa-booking-app, #app) .anubis-dog-sex { width: 100%; }
+/* The plugin hides its legacy country picker off-screen; keep it inside the layout. */
+:is(#ssa-booking-app, #app) .customer-information-container .vue-tel-input .vti__dropdown { left: 0; width: 0; height: 0; padding: 0; overflow: hidden; visibility: hidden; pointer-events: none; }
+:is(#ssa-booking-app, #app) .customer-information-container .foxy-phone-container .vue-tel-input-container { align-items: center; padding: 30px 10px 10px; }
+:is(#ssa-booking-app, #app) .customer-information-container .foxy-phone-container [data-type="ssa-tel-input-anchor"] { position: static; flex: 0 0 auto; }
+:is(#ssa-booking-app, #app) .customer-information-container .foxy-phone-container .vue-tel-input { flex: 1; min-width: 0; }
+:is(#ssa-booking-app, #app) .customer-information-container .foxy-phone-container .vti__input { padding: 0 6px; }
+:is(#ssa-booking-app, #app) .customer-information-container [data-anubis-field="notes"] .mdc-floating-label { white-space: normal; line-height: 16px; }
+@media (max-width:600px) { :is(#ssa-booking-app, #app) .customer-information-container textarea[name="notes"] { padding-top: 48px; min-height: 132px; } }
+:is(#ssa-booking-app, #app) .customer-information-container .foxy-phone-container .vue-tel-input-container { width: 100%; min-width: 0; box-sizing: border-box; }

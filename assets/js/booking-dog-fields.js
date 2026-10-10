@@ -30,7 +30,6 @@
 			if (!input || container.querySelector('.anubis-dog-sex')) { return; }
 			var fieldset = document.createElement('fieldset');
 			fieldset.className = 'anubis-dog-sex';
-			fieldset.style.cssText = 'border:0;margin:0;padding:16px;background:#f5f5f5;border-bottom:1px solid #999';
 			var legend = document.createElement('legend');
 			legend.textContent = 'Geschlecht des Hundes';
 			fieldset.appendChild(legend);
