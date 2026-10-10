@@ -2,19 +2,31 @@
 /** Rasse → Größe → Leistung → SSA-Terminauswahl. */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-// Start fetching the iframe's app assets before its WordPress document arrives.
+// Warm the browser cache before booking; prioritize these files on the booking page.
 add_action( 'wp_head', function () {
-	if ( ! is_page( (int) get_option( 'anubis_booking_page_id' ) ) || ! function_exists( 'ssa' ) ) { return; }
+	if ( ! function_exists( 'ssa' ) ) { return; }
+	$booking_page = is_page( (int) get_option( 'anubis_booking_page_id' ) );
+	$relation = $booking_page ? 'preload' : 'prefetch';
 	$plugin = ssa();
 	$assets = array(
 		'booking-app-new/dist/static/js/manifest.js' => 'script',
 		'booking-app-new/dist/static/js/chunk-vendors.js' => 'script',
 		'booking-app-new/dist/static/js/app.js' => 'script',
 		'booking-app-new/dist/static/css/app.css' => 'style',
+		'assets/js/unsupported-min.js' => 'script',
+		'assets/js/iframe-inner.js' => 'script',
+		'assets/css/unsupported.css' => 'style',
+		'assets/css/material-icons.css' => 'style',
+		'assets/css/roboto-font.css' => 'style',
+		'assets/css/iframe-inner.css' => 'style',
 	);
 	foreach ( $assets as $path => $type ) {
 		$url = $plugin->url( $path . '?ver=' . $plugin::VERSION );
-		echo '<link rel="preload" href="' . esc_url( $url ) . '" as="' . esc_attr( $type ) . '">' . "\n";
+		echo '<link rel="' . esc_attr( $relation ) . '" href="' . esc_url( $url ) . '" as="' . esc_attr( $type ) . '">' . "\n";
+	}
+	foreach ( array( '/assets/booking-calendar.css' => 'style', '/assets/js/booking-fields.js' => 'script' ) as $path => $type ) {
+		$url = get_template_directory_uri() . $path . '?ver=' . filemtime( get_template_directory() . $path );
+		echo '<link rel="' . esc_attr( $relation ) . '" href="' . esc_url( $url ) . '" as="' . esc_attr( $type ) . '">' . "\n";
 	}
 }, 2 );
 
@@ -32,7 +44,7 @@ function anubis_dog_sizes() {
 }
 
 function anubis_booking_services() {
-	$services = array( 'haircut' => 'Komplett-Haarschnitt' );
+	$services = array( 'haircut' => 'Rundum-Paket – Haarschnitt & Pflege' );
 	foreach ( anubis_price_definitions() as $key => $definition ) {
 		if ( 'individual' === $definition[2] ) { $services[ $key ] = $definition[0]; }
 	}
@@ -55,6 +67,9 @@ function anubis_booking_choice( $name, $size, $service ) {
 	}
 	$valid_size = isset( anubis_dog_sizes()[ $size ] );
 	$selected = array_values( array_unique( array_filter( (array) $service, 'is_string' ) ) );
+	if ( in_array( 'haircut', $selected, true ) ) {
+		$selected = array_values( array_diff( $selected, array( 'brushing', 'nails' ) ) );
+	}
 	$known = anubis_booking_services();
 	$haircut_allowed = ! $breed || $breed['haircut'];
 	$valid = '' !== $name && $valid_size && count( $selected ) > 0;
@@ -82,9 +97,26 @@ function anubis_booking_choice( $name, $size, $service ) {
 
 function anubis_service_exclusions() {
 	return array(
-		'haircut' => array( 'paws', 'eyes', 'hygiene', 'head', 'combo' ),
+		'haircut' => array( 'paws', 'eyes', 'hygiene', 'head', 'combo', 'brushing', 'nails' ),
 		'combo' => array( 'paws', 'eyes' ),
 	);
+}
+
+function anubis_combination_details( $choice ) {
+	$labels = array_intersect_key( anubis_booking_services(), array_flip( $choice['service'] ) );
+	return array(
+		'duration' => $choice['duration'], 'availability' => anubis_booking_availability(),
+		'description' => implode( ' + ', $labels ) . ' · Gesamtpreis: ' . $choice['price'],
+	);
+}
+
+/** SSA updates invalidate its cache, even when the values have not changed. */
+function anubis_booking_type_needs_update( $record, $data ) {
+	foreach ( $data as $key => $value ) {
+		// Database numbers may be strings; compare their values rather than types.
+		if ( ! array_key_exists( $key, $record ) || $record[ $key ] != $value ) { return true; }
+	}
+	return false;
 }
 
 function anubis_combination_type( $choice ) {
@@ -100,15 +132,14 @@ function anubis_combination_type( $choice ) {
 	$model = ssa()->appointment_type_model;
 	$existing = $model->query( array( 'slug' => $slug ) );
 	$labels = array_intersect_key( anubis_booking_services(), array_flip( $keys ) );
-	$data = array(
-		'duration' => $choice['duration'], 'availability' => anubis_booking_availability(),
-		'description' => implode( ' + ', $labels ) . ' · Gesamtpreis: ' . $choice['price'],
-	);
+	$data = anubis_combination_details( $choice );
 	if ( ! empty( $existing[0]['id'] ) ) {
 		if ( 'publish' !== $existing[0]['status'] ) { return 0; }
 		$id = (int) $existing[0]['id'];
-		$result = $model->update( $id, $data );
-		if ( false === $result || ( is_array( $result ) && ! empty( $result['error'] ) ) ) { return 0; }
+		if ( anubis_booking_type_needs_update( $existing[0], $data ) ) {
+			$result = $model->update( $id, $data );
+			if ( false === $result || ( is_array( $result ) && ! empty( $result['error'] ) ) ) { return 0; }
+		}
 	} else {
 		$id = $model->insert( array_merge( $data, array(
 			'title' => implode( ' + ', $labels ), 'slug' => $slug, 'status' => 'publish',
@@ -117,6 +148,7 @@ function anubis_combination_type( $choice ) {
 			'availability_type' => 'available_blocks', 'availability_increment' => 10,
 			'timezone_style' => 'locked', 'booking_layout' => 'week',
 			'customer_information' => anubis_booking_customer_fields(),
+			'custom_customer_information' => anubis_booking_customer_fields( true ),
 			'notifications' => array( 'fields' => array( array( 'field' => 'admin', 'send' => true ), array( 'field' => 'customer', 'send' => true ) ), 'notifications_opt_in' => array( 'enabled' => false ) ),
 			'location' => 'Schumannstraße 8, 90429 Nürnberg, Deutschland',
 		) ) );
@@ -150,7 +182,7 @@ function anubis_booking_selection() {
 	foreach ( anubis_booking_duration_defaults() as $key => $default ) { $durations[ $key ] = anubis_booking_duration( $key ); }
 	$values = array(); $images = array();
 	foreach ( anubis_price_definitions() as $key => $definition ) { $values[ $key ] = anubis_price_value( $key ); }
-	foreach ( $sizes as $key => $label ) { $images[ $key ] = get_template_directory_uri() . '/assets/images/dogs/' . $key . '.png'; }
+	foreach ( $sizes as $key => $label ) { $images[ $key ] = get_template_directory_uri() . '/assets/images/dogs/' . $key . '-transparent.png'; }
 	$config = array( 'values' => $values, 'images' => $images, 'exclusions' => anubis_service_exclusions(), 'breeds' => anubis_dog_breeds(), 'prices' => $prices, 'sizes' => $sizes, 'durations' => $durations );
 	ob_start();
 	?>
@@ -172,7 +204,7 @@ function anubis_booking_selection() {
 			<div class="booking-services"><?php foreach ( $services as $key => $label ) : ?>
 				<div class="booking-service-choice">
 				<label class="booking-service"><input type="checkbox" name="dog_services[]" value="<?php echo esc_attr( $key ); ?>"<?php echo 'haircut' === $key ? ' aria-describedby="dog-care-note"' : ''; ?> <?php checked( in_array( $key, $choice['service'], true ) ); ?>><span><strong><?php echo esc_html( $label ); ?></strong><small class="service-detail"></small></span></label>
-				<?php if ( 'haircut' === $key ) : ?><p id="dog-care-note" class="dog-care-note booking-help" aria-live="polite"<?php echo $choice['haircut_allowed'] ? ' hidden' : ''; ?>>Für diese Rasse sieht unsere Liste Teilpflege vor. Bitte wähle eine Einzelleistung.</p><?php endif; ?>
+				<?php if ( 'haircut' === $key ) : ?><p class="booking-help">Inklusive Bürsten und Auskämmen sowie Krallen schneiden.</p><p id="dog-care-note" class="dog-care-note booking-help" aria-live="polite"<?php echo $choice['haircut_allowed'] ? ' hidden' : ''; ?>>Für diese Rasse sieht unsere Liste Teilpflege vor. Bitte wähle eine Einzelleistung.</p><?php endif; ?>
 				</div>
 			<?php endforeach; ?></div>
 			<p class="dog-price-preview" aria-live="polite"><?php echo $choice['valid'] ? 'Gesamtpreis: ' . esc_html( $choice['price'] ) : ''; ?></p>
@@ -282,7 +314,7 @@ function anubis_customize_booking_types( $wp_customize ) {
 	) );
 	$choices = array( 0 => 'Persönliche Terminvereinbarung' ) + anubis_public_booking_types();
 	$services = array();
-	foreach ( anubis_dog_sizes() as $size => $label ) { $services[ 'haircut_' . $size ] = 'Komplett-Haarschnitt – ' . $label; }
+	foreach ( anubis_dog_sizes() as $size => $label ) { $services[ 'haircut_' . $size ] = 'Rundum-Paket – Haarschnitt & Pflege – ' . $label; }
 	$services += array_diff_key( anubis_booking_services(), array( 'haircut' => true ) );
 	foreach ( $services as $key => $label ) {
 		$id = 'anubis_booking_type_' . $key;
@@ -337,7 +369,7 @@ function anubis_customize_booking_schedule( $wp_customize ) {
 		'title' => 'Buchung: Dauer & Zeiten', 'priority' => 32,
 		'description' => 'Dauer in Minuten. Die Werte werden mit den von diesem Theme angelegten SSA-Terminarten synchronisiert. Buchbar Mo–Fr; Samstag nur telefonisch.',
 	) );
-	$labels = array( 'small' => 'Komplett-Haarschnitt: kleine Hunde', 'medium' => 'Komplett-Haarschnitt: mittelgroße Hunde', 'large' => 'Komplett-Haarschnitt: große Hunde', 'individual' => 'Alle Einzelbehandlungen' );
+	$labels = array( 'small' => 'Rundum-Paket – Haarschnitt & Pflege: kleine Hunde', 'medium' => 'Rundum-Paket – Haarschnitt & Pflege: mittelgroße Hunde', 'large' => 'Rundum-Paket – Haarschnitt & Pflege: große Hunde', 'individual' => 'Alle Einzelbehandlungen' );
 	foreach ( anubis_booking_duration_defaults() as $key => $default ) {
 		$id = 'anubis_duration_' . $key;
 		$wp_customize->add_setting( $id, array( 'default' => $default, 'sanitize_callback' => 'anubis_sanitize_booking_duration', 'capability' => 'edit_theme_options' ) );
@@ -360,7 +392,7 @@ add_shortcode( 'anubis_duration', 'anubis_duration_shortcode' );
 function anubis_managed_booking_services() {
 	$result = array();
 	foreach ( anubis_dog_sizes() as $size => $label ) {
-		$result[ 'haircut_' . $size ] = array( 'title' => 'Komplett-Haarschnitt – ' . $label, 'duration' => $size, 'price' => $size );
+		$result[ 'haircut_' . $size ] = array( 'title' => 'Rundum-Paket – Haarschnitt & Pflege – ' . $label, 'duration' => $size, 'price' => $size );
 	}
 	foreach ( array_diff_key( anubis_booking_services(), array( 'haircut' => true ) ) as $key => $label ) {
 		$result[ $key ] = array( 'title' => $label, 'duration' => 'individual', 'price' => $key );
@@ -370,18 +402,26 @@ function anubis_managed_booking_services() {
 
 function anubis_booking_type_details( $definition ) {
 	return array(
+		'title' => $definition['title'],
 		'duration' => anubis_booking_duration( $definition['duration'] ),
 		'availability' => anubis_booking_availability(),
-		'description' => 'Gesamtpreis: ' . anubis_price( $definition['price'] ) . '. Ohne Baden und Föhnen. Zuschläge nach Fellzustand werden vor der Behandlung besprochen.',
+		'description' => 'Gesamtpreis: ' . anubis_price( $definition['price'] ) . '. ' . ( in_array( $definition['price'], array( 'small', 'medium', 'large' ), true ) ? 'Inklusive Bürsten und Auskämmen sowie Krallen schneiden. ' : '' ) . 'Ohne Baden und Föhnen. Zuschläge nach Fellzustand werden vor der Behandlung besprochen.',
 	);
 }
 
 function anubis_booking_customer_fields( $custom = false ) {
-	$definitions = array( 'Name' => array( 'single-text', 'face' ), 'Email' => array( 'single-text', 'email' ), 'Phone' => array( 'phone', 'phone' ), 'Notes' => array( 'multi-text', 'description' ) );
+	$definitions = array(
+		'Name' => array( 'single-text', 'face' ),
+		'Name des Vierbeiners' => array( 'single-text', 'pets' ),
+		'Geschlecht des Hundes' => array( 'radios', 'pets' ),
+		'Email' => array( 'single-text', 'email' ),
+		'Phone' => array( 'phone', 'phone' ),
+		'Notes' => array( 'multi-text', 'description' ),
+	);
 	if ( $custom ) { $definitions += array( 'Hunderasse' => array( 'single-text', 'pets' ), 'Hundegröße' => array( 'single-text', 'pets' ) ); }
 	$fields = array();
 	foreach ( $definitions as $field => $properties ) {
-		$fields[] = array( 'field' => $field, 'type' => $properties[0], 'icon' => $properties[1], 'display' => true, 'required' => in_array( $field, array( 'Name', 'Email' ), true ), 'values' => array() );
+		$fields[] = array( 'field' => $field, 'type' => $properties[0], 'icon' => $properties[1], 'display' => true, 'required' => in_array( $field, array( 'Name', 'Email' ), true ), 'values' => 'Geschlecht des Hundes' === $field ? array( 'Männlich', 'Weiblich' ) : array() );
 	}
 	return $fields;
 }
@@ -471,13 +511,14 @@ function anubis_initialize_booking_types() {
 add_action( 'init', 'anubis_initialize_booking_types', 40 );
 
 function anubis_initialize_booking_customer_fields() {
-	if ( ! function_exists( 'ssa' ) || ! get_option( 'anubis_ssa_types_initialized' ) || get_option( 'anubis_ssa_customer_fields_ready' ) ) { return; }
+	if ( ! function_exists( 'ssa' ) || ! get_option( 'anubis_ssa_types_initialized' ) || 2 === (int) get_option( 'anubis_ssa_dog_details_fields_ready' ) ) { return; }
 	$success = true;
-	foreach ( get_option( 'anubis_ssa_managed_types', array() ) as $id ) {
+	$ids = array_merge( array_values( get_option( 'anubis_ssa_managed_types', array() ) ), array_keys( get_option( 'anubis_ssa_combinations', array() ) ) );
+	foreach ( array_unique( $ids ) as $id ) {
 		$result = ssa()->appointment_type_model->update( $id, array( 'customer_information' => anubis_booking_customer_fields(), 'custom_customer_information' => anubis_booking_customer_fields( true ) ) );
 		if ( false === $result || ( is_array( $result ) && ! empty( $result['error'] ) ) ) { $success = false; }
 	}
-	if ( $success ) { update_option( 'anubis_ssa_customer_fields_ready', 1 ); }
+	if ( $success ) { update_option( 'anubis_ssa_dog_details_fields_ready', 2 ); }
 }
 add_action( 'init', 'anubis_initialize_booking_customer_fields', 41 );
 
@@ -488,7 +529,7 @@ function anubis_sync_booking_types() {
 	foreach ( anubis_managed_booking_services() as $key => $definition ) { $payload[ $key ] = anubis_booking_type_details( $definition ); }
 	foreach ( get_option( 'anubis_ssa_combinations', array() ) as $id => $combination ) {
 		$choice = anubis_booking_choice( 'Mischling', $combination['size'], $combination['services'] );
-		$payload[ 'combination_' . $id ] = array( 'duration' => $choice['duration'], 'availability' => anubis_booking_availability(), 'description' => 'Gesamtpreis: ' . $choice['price'] );
+		$payload[ 'combination_' . $id ] = anubis_combination_details( $choice );
 	}
 	$hash = md5( wp_json_encode( $payload ) );
 	if ( get_option( 'anubis_ssa_schedule_hash' ) === $hash ) { return; }
@@ -500,6 +541,7 @@ function anubis_sync_booking_types() {
 		if ( ! isset( $payload[ $key ] ) ) { continue; }
 		$record = $model->get( $id );
 		if ( ! $record || 'delete' === $record['status'] ) { continue; }
+		if ( ! anubis_booking_type_needs_update( $record, $payload[ $key ] ) ) { continue; }
 		$result = $model->update( $id, $payload[ $key ] );
 		if ( false === $result || ( is_array( $result ) && ! empty( $result['error'] ) ) ) { $success = false; }
 	}

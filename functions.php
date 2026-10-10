@@ -88,6 +88,7 @@ add_action( 'customize_register', 'anubis_customize_hero' );
 function anubis_theme_fallback_menu() {
 	echo '<ul id="m">';
 	echo anubis_home_menu_item();
+	if ( anubis_about_url() ) { echo '<li><a href="' . esc_url( anubis_about_url() ) . '">Über mich</a></li>'; }
 	echo '<li><a href="' . esc_url( anubis_prices_url() ) . '">Leistungen &amp; Preise</a></li>';
 	echo '<li><a href="' . esc_url( anubis_gallery_url() ) . '">Galerie</a></li>';
 	echo '<li><a href="' . esc_url( home_url( '/#kontakt' ) ) . '">Kontakt</a></li>';
@@ -195,7 +196,6 @@ function anubis_price_definitions() {
 		'brushing'  => array( 'Bürsten und Auskämmen', 15, 'individual', '', ' pro 15 Minuten' ),
 		'extra'     => array( 'Zusätzliche Fellpflege', 15, 'individual', '', ' je weitere 15 Minuten' ),
 		'puppy'     => array( 'Welpen-Eingewöhnung', 20, 'individual', '', '' ),
-		'stripping' => array( 'Handtrimmen', 'Preis nach Vereinbarung', 'individual', '', '' ),
 		'special'   => array( 'Spezielle Fellpflege', 'Preis nach Vereinbarung', 'individual', '', '' ),
 		'mat_clean' => array( 'Gepflegtes Fell', 0, 'supplements', '', ' Aufpreis' ),
 		'mat_light' => array( 'Leichte bis mittlere Verfilzungen', 20, 'supplements', 'ab ', ' Aufpreis' ),
@@ -250,7 +250,7 @@ function anubis_customize_prices( $wp_customize ) {
 		'title' => 'Leistungen & Preise', 'priority' => 31,
 		'description' => 'Preise gelten gemeinsam für Startseite und Preisliste. Leere Felder verwenden die bisherigen Preise.',
 	) );
-	foreach ( array( 'haircuts' => 'Komplett-Haarschnitt', 'individual' => 'Einzelbehandlungen', 'supplements' => 'Verfilzungszuschläge' ) as $group => $label ) {
+	foreach ( array( 'haircuts' => 'Rundum-Paket – Haarschnitt & Pflege', 'individual' => 'Einzelbehandlungen', 'supplements' => 'Verfilzungszuschläge' ) as $group => $label ) {
 		$wp_customize->add_section( 'anubis_prices_' . $group, array( 'title' => $label, 'panel' => 'anubis_prices' ) );
 	}
 	foreach ( anubis_price_definitions() as $key => $definition ) {
@@ -282,15 +282,27 @@ function anubis_parameterize_prices( $content ) {
 }
 
 function anubis_haircut_cards_shortcode() {
-	$definitions = anubis_price_definitions();
+	$labels = array( 'small' => 'Klein', 'medium' => 'Mittel', 'large' => 'Groß' );
 	$html = '<dl class="haircut-cards">';
 	foreach ( array( 'small', 'medium', 'large' ) as $size ) {
-		$image = get_template_directory_uri() . '/assets/images/dogs/' . $size . '.png';
-		$html .= '<div class="haircut-card"><dt><img src="' . esc_url( $image ) . '" alt="" width="1254" height="1254" loading="lazy" decoding="async"><span>' . esc_html( $definitions[ $size ][0] ) . '</span></dt><dd>' . esc_html( anubis_price( $size ) ) . '</dd></div>';
+		$image = get_template_directory_uri() . '/assets/images/dogs/' . $size . '-transparent.png';
+		$html .= '<div class="haircut-card"><dt><img src="' . esc_url( $image ) . '" alt="" width="1254" height="1254" loading="lazy" decoding="async"><span>' . esc_html( $labels[ $size ] ) . '</span></dt><dd>' . esc_html( anubis_price( $size ) ) . '</dd></div>';
 	}
 	return $html . '</dl>';
 }
 add_shortcode( 'anubis_haircut_cards', 'anubis_haircut_cards_shortcode' );
+
+add_action( 'init', function () {
+	if ( get_option( 'anubis_handtrimming_removed' ) ) { return; }
+	$page = get_post( (int) get_option( 'anubis_prices_page_id' ) );
+	if ( ! $page || 'page' !== $page->post_type ) { return; }
+	$content = preg_replace( '~<div>\s*<dt>Handtrimmen(?:<span>.*?</span>)?</dt>\s*<dd>.*?</dd>\s*</div>\s*~s', '', $page->post_content );
+	if ( $content !== $page->post_content ) {
+		$result = wp_update_post( wp_slash( array( 'ID' => $page->ID, 'post_content' => $content ) ), true );
+		if ( is_wp_error( $result ) || ! $result ) { return; }
+	}
+	update_option( 'anubis_handtrimming_removed', 1 );
+}, 37 );
 
 function anubis_add_haircut_cards() {
 	if ( get_option( 'anubis_haircut_cards_ready' ) ) { return; }
@@ -319,6 +331,40 @@ function anubis_remove_price_heading_numbers() {
 	if ( ! is_wp_error( $result ) && $result ) { update_option( 'anubis_price_heading_numbers_removed', 1 ); }
 }
 add_action( 'init', 'anubis_remove_price_heading_numbers', 32 );
+
+function anubis_update_haircut_included_services() {
+	if ( get_option( 'anubis_haircut_included_services_ready' ) ) { return; }
+	$page = get_post( (int) get_option( 'anubis_prices_page_id' ) );
+	if ( ! $page || 'page' !== $page->post_type ) { return; }
+	$content = preg_replace_callback( '~(<h3>Im Komplett-Haarschnitt enthalten:</h3>\s*<ul>)(.*?)(</ul>)~s', function ( $match ) {
+		$items = $match[2];
+		foreach ( array( 'Krallen schneiden', 'Bürsten und Auskämmen' ) as $service ) {
+			if ( false === strpos( $items, $service ) ) { $items .= '<li>' . $service . '</li>' . "\n"; }
+		}
+		return $match[1] . $items . $match[3];
+	}, $page->post_content, -1, $count );
+	if ( ! $count ) { return; }
+	$result = wp_update_post( wp_slash( array( 'ID' => $page->ID, 'post_content' => $content ) ), true );
+	if ( ! is_wp_error( $result ) && $result ) { update_option( 'anubis_haircut_included_services_ready', 1 ); }
+}
+add_action( 'init', 'anubis_update_haircut_included_services', 34 );
+
+function anubis_update_roundup_package_copy() {
+	if ( get_option( 'anubis_roundup_package_copy_ready' ) ) { return; }
+	$page = get_post( (int) get_option( 'anubis_prices_page_id' ) );
+	if ( ! $page || 'page' !== $page->post_type ) { return; }
+	$content = str_replace( 'Komplett-Haarschnitt', 'Rundum-Paket – Haarschnitt &amp; Pflege', $page->post_content );
+	$content = preg_replace_callback( '~(<h3>Im Rundum-Paket[^<]* enthalten:</h3>\s*<ul>)(.*?)(</ul>)~s', function ( $match ) {
+		foreach ( array( 'Krallen schneiden', 'Bürsten und Auskämmen' ) as $service ) {
+			if ( false === strpos( $match[2], $service ) ) { $match[2] .= '<li>' . $service . '</li>'; }
+		}
+		return $match[1] . $match[2] . $match[3];
+	}, $content );
+	$excerpt = str_replace( 'Haarschnitte ab', 'Rundum-Pakete ab', $page->post_excerpt );
+	$result = wp_update_post( wp_slash( array( 'ID' => $page->ID, 'post_content' => $content, 'post_excerpt' => $excerpt ) ), true );
+	if ( ! is_wp_error( $result ) && $result ) { update_option( 'anubis_roundup_package_copy_ready', 1 ); }
+}
+add_action( 'init', 'anubis_update_roundup_package_copy', 35 );
 
 function anubis_create_booking_page() {
 	if ( get_option( 'anubis_booking_page_initialized' ) ) { return; }
@@ -436,6 +482,7 @@ function anubis_render_social_links() {
 }
 
 require_once get_template_directory() . '/inc/contact.php';
+require_once get_template_directory() . '/inc/about.php';
 require_once get_template_directory() . '/inc/booking.php';
 require_once get_template_directory() . '/inc/booking-retention.php';
 require_once get_template_directory() . '/inc/booking-email.php';

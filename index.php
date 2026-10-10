@@ -23,7 +23,7 @@ $hero = anubis_hero_content();
 	echo wp_kses_post( do_shortcode( $prices_excerpt ?: 'Haarschnitte ab [anubis_price key="haircut_min"], Einzelbehandlungen und Welpen-Eingewöhnung – ohne Baden und Föhnen.' ) );
 	?></p>
 	<div class="g">
-		<div class="card"><h3>Komplett-Haarschnitt</h3><p>Fell, Gesicht, Pfoten und Hygieneschnitt.</p><p class="service-price">ab <?php echo esc_html( anubis_price( 'haircut_min' ) ); ?></p></div>
+		<div class="card"><h3>Rundum-Paket – Haarschnitt & Pflege</h3><p>Fell, Gesicht, Pfoten und Hygieneschnitt – inklusive Krallenschneiden, Bürsten und Auskämmen.</p><p class="service-price">ab <?php echo esc_html( anubis_price( 'haircut_min' ) ); ?></p></div>
 		<div class="card"><h3>Einzelbehandlungen</h3><p>Gezielte Pflege für Krallen, Pfoten und Augen.</p><p class="service-price">ab <?php echo esc_html( anubis_price( 'individual_min' ) ); ?></p></div>
 		<div class="card"><h3>Welpen-Eingewöhnung</h3><p>Ca. <?php echo esc_html( anubis_booking_duration( 'individual' ) ); ?> Minuten behutsames Kennenlernen.</p><p class="service-price"><?php echo esc_html( anubis_price( 'puppy' ) ); ?></p></div>
 	</div>

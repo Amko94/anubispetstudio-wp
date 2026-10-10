@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 360" fill="none">
+<defs>
+ <linearGradient id="leaf" x2="1" y2="1"><stop stop-color="#a8bc35"/><stop offset=".45" stop-color="#52852e"/><stop offset="1" stop-color="#173f26"/></linearGradient>
+ <linearGradient id="red" x2="1" y2="1"><stop stop-color="#bc7850"/><stop offset="1" stop-color="#753e2e"/></linearGradient>
+ <g id="blade"><path d="M0 0C-40-13-47-50-31-78C-2-65 14-31 0 0Z" fill="url(#leaf)"/><path d="M0 0-29-68" stroke="#b4c871" stroke-opacity=".6" stroke-width="1.5"/></g>
+ <g id="fern" stroke="#548029" stroke-width="2" stroke-linecap="round"><path d="M0 0Q-12-77 0-160"/><path d="M-2-15Q-26-16-36-35M-2-15Q18-21 28-40M-4-36Q-29-37-38-56M-4-36Q18-43 29-62M-5-58Q-28-60-35-78M-5-58Q17-64 25-83M-4-80Q-24-84-29-100M-4-80Q15-86 22-104M-2-101Q-18-106-20-121M-2-101Q13-107 17-124M0-122Q-12-128-11-140M0-122Q10-129 11-142"/></g>
+ <g id="flower" fill="#fff6d9"><ellipse cy="-8" rx="3" ry="8"/><ellipse cy="-8" rx="3" ry="8" transform="rotate(60)"/><ellipse cy="-8" rx="3" ry="8" transform="rotate(120)"/><ellipse cy="-8" rx="3" ry="8" transform="rotate(180)"/><ellipse cy="-8" rx="3" ry="8" transform="rotate(240)"/><ellipse cy="-8" rx="3" ry="8" transform="rotate(300)"/><circle r="4" fill="#d6ad37"/></g>
+</defs>
+<g stroke="#38592c" stroke-width="3"><path d="M34 350Q92 180 249 58M47 330Q163 237 290 231M60 313Q80 149 35 65M80 280Q191 156 185 30"/></g>
+<g>
+ <use href="#blade" transform="translate(67 310) rotate(-32) scale(1.3)"/><use href="#blade" transform="translate(82 278) rotate(78) scale(1.2)"/>
+ <use href="#blade" transform="translate(108 228) rotate(-24) scale(1.25)"/><use href="#blade" transform="translate(131 197) rotate(80) scale(1.3)"/>
+ <use href="#blade" transform="translate(176 147) rotate(12) scale(1.05)"/><use href="#blade" transform="translate(199 112) rotate(80)"/>
+ <use href="#blade" transform="translate(239 74) rotate(56) scale(.75)"/><use href="#blade" transform="translate(61 201) rotate(-55)"/>
+ <use href="#blade" transform="translate(58 150) rotate(38) scale(.8)"/><use href="#blade" transform="translate(51 109) rotate(-40) scale(.7)"/>
+ <use href="#blade" transform="translate(151 253) rotate(120)"/><use href="#blade" transform="translate(207 236) rotate(62) scale(.85)"/>
+ <use href="#blade" transform="translate(246 234) rotate(125) scale(.7)"/>
+</g>
+<g fill="url(#red)"><path d="M117 254Q79 178 93 127Q125 191 117 254Z"/><path d="M117 254Q133 173 168 147Q153 212 117 254Z"/><path d="M117 254Q177 200 224 204Q165 246 117 254Z"/></g>
+<use href="#fern" transform="translate(69 346) rotate(55) scale(1.15)"/><use href="#fern" transform="translate(51 320) rotate(-18)"/><use href="#fern" transform="translate(175 185) rotate(31) scale(.85)"/>
+<g stroke="#678239" stroke-width="2"><path d="m92 283 18-47m74-63 24-25m-46 90 29-14"/></g>
+<use href="#flower" transform="translate(110 236) scale(.7)"/><use href="#flower" transform="translate(208 148) scale(.55)"/><use href="#flower" transform="translate(191 224) scale(.65)"/>
+</svg>

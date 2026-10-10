@@ -148,6 +148,12 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		careNote.hidden = haircutAllowed;
 		serviceInputs.forEach( function ( input ) { if ( input.value === 'haircut' && ! haircutAllowed ) { input.checked = false; } } );
 		var chosen = serviceInputs.filter( function ( input ) { return input.checked; } ).map( function ( input ) { return input.value; } );
+		if ( chosen.includes( 'haircut' ) ) {
+			serviceInputs.forEach( function ( input ) {
+				if ( ( config.exclusions.haircut || [] ).includes( input.value ) ) { input.checked = false; }
+			} );
+			chosen = serviceInputs.filter( function ( input ) { return input.checked; } ).map( function ( input ) { return input.value; } );
+		}
 		var total = 0, duration = 0, negotiated = false;
 		var euro = new Intl.NumberFormat( 'de-DE', { style: 'currency', currency: 'EUR' } );
 		serviceInputs.forEach( function ( input ) {
